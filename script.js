@@ -1,13 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/invoice')
-        .then(resp => resp.json())
+        .then(res => res.json())
         .then(data => {
             let html = '<ul>';
-            data.items.forEach(item => {
-                html += `<li>${item.name} - $${item.price}</li>`;
+            data.items.forEach(i => {
+                html += `<li>${i.name} - $${i.price}</li>`;
             });
             html += '</ul>';
             document.getElementById('invoice-container').innerHTML = html;
         })
-        .catch(err => console.error("Failed to load invoice:", err));
+        .catch(err => {
+            document.getElementById('invoice-container').innerText =
+                'Error loading invoice';
+            console.error(err);
+        });
 });
