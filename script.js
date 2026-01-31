@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/api/invoice')
+    fetch('api/invoice')
         .then(res => res.json())
         .then(data => {
             let html = '<ul>';
@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('invoice-container').innerHTML = html;
         })
         .catch(err => {
-            document.getElementById('invoice-container').innerText =
-                'Error loading invoice';
+            document.getElementById('invoice-container').innerText = 'Error loading invoice';
             console.error(err);
         });
 });
